@@ -1,0 +1,407 @@
+<title>Gloria Stephen Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap">
+<style>
+/* Layout: quiet gallery. Wide margins, one narrow reading column, hairlines instead of boxes, a single plum accent used sparingly. */
+:root{
+  --bg:#f6f6f4; --surface:#ffffff; --ink:#141416; --muted:#6c6c72; --faint:#a3a3a8; --line:#e4e4e0;
+  --accent:#7b2d5c; --accent-soft:#f3e8ef;
+  --add:#1f6b4a; --add-bg:#e8f3ec; --del:#a3352b; --del-bg:#f8e9e6;
+  --sans:"Geist","Helvetica Neue",Arial,sans-serif;
+  --serif:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --mono:"Geist Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0f0f11; --surface:#17171a; --ink:#f1f0ee; --muted:#9d9ca3; --faint:#66656c; --line:#26262b;
+  --accent:#e59bc6; --accent-soft:#2a1823;
+  --add:#7fd3a5; --add-bg:#132a1f; --del:#f0998f; --del-bg:#2e1715; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#0f0f11; --surface:#17171a; --ink:#f1f0ee; --muted:#9d9ca3; --faint:#66656c; --line:#26262b;
+  --accent:#e59bc6; --accent-soft:#2a1823;
+  --add:#7fd3a5; --add-bg:#132a1f; --del:#f0998f; --del-bg:#2e1715; color-scheme:dark }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;font-weight:400;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:max(24px,env(safe-area-inset-right,0px))}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-weight:500;margin:0;text-wrap:balance;letter-spacing:-.025em}
+p{margin:0}
+em.s{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:18px}
+.brand{font-weight:500;text-decoration:none;font-size:15px;letter-spacing:-.01em}
+.links{display:flex;gap:28px;font-size:14px}
+.links a{text-decoration:none;color:var(--muted);transition:color .2s}
+.links a:hover{color:var(--ink)}
+
+/* hero */
+.hero{padding-block:clamp(56px,10vw,120px) 72px}
+.status{display:inline-flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);padding:6px 14px 6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--add);box-shadow:0 0 0 0 color-mix(in srgb,var(--add) 50%,transparent);animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--add) 45%,transparent)}70%{box-shadow:0 0 0 8px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.hero h1{font-size:clamp(40px,7.4vw,96px);line-height:1.02;margin-top:28px;max-width:13ch;font-weight:500;letter-spacing:-.045em}
+.hero h1 em.s{color:var(--accent);letter-spacing:-.02em}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,440px);gap:56px;align-items:end;margin-top:48px}
+.lede{font-size:18px;color:var(--muted);max-width:32em;font-weight:300}
+.lede b{color:var(--ink);font-weight:500}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:8px;font:500 14px var(--sans);padding:11px 18px;border-radius:999px;text-decoration:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;transition:border-color .2s,transform .2s}
+.btn:hover{border-color:var(--ink)}
+.btn.dark{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.dark:hover{transform:translateY(-1px)}
+.arrow{transition:transform .2s}
+.btn:hover .arrow{transform:translateX(3px)}
+
+/* diff card */
+.diff{background:var(--surface);border:1px solid var(--line);border-radius:18px;box-shadow:0 1px 2px rgba(0,0,0,.03),0 24px 48px -24px rgba(20,20,22,.18);font-family:var(--mono);font-size:12.5px;min-width:0;overflow:hidden}
+.diff-head{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--line);color:var(--muted)}
+.tabs{display:flex;gap:2px;padding:3px;background:var(--bg);border-radius:999px}
+.tabs button{font:500 11.5px var(--mono);padding:5px 11px;border-radius:999px;border:0;background:transparent;color:var(--muted);cursor:pointer;transition:background .2s,color .2s}
+.tabs button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.diff-body{padding:12px;overflow-x:auto;display:grid;gap:3px}
+.row{display:grid;grid-template-columns:16px minmax(110px,1fr) auto;gap:10px;padding:7px 10px;border-radius:8px;white-space:nowrap}
+.row.add{background:var(--add-bg);color:var(--add)}
+.row.del{background:var(--del-bg);color:var(--del)}
+.row .v{text-align:right;font-variant-numeric:tabular-nums}
+.diff-foot{padding:12px 16px;border-top:1px solid var(--line);color:var(--faint);font-family:var(--sans);font-size:12px;line-height:1.5}
+
+/* facts */
+.facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding-block:36px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.fact strong{display:block;font-weight:400;font-size:clamp(40px,5vw,56px);line-height:1;letter-spacing:-.04em}
+.fact strong em.s{color:var(--accent)}
+.fact span{display:block;color:var(--muted);font-size:14px;margin-top:10px;max-width:22ch;line-height:1.45}
+
+/* sections */
+section{padding-block:clamp(80px,11vw,136px) 0}
+.sec-head{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:24px 56px;margin-bottom:48px;align-items:baseline}
+.sec-head h2{font-size:clamp(30px,4.2vw,48px);line-height:1.08;letter-spacing:-.035em}
+.sec-head p{color:var(--muted);margin-top:14px;max-width:36em;font-weight:300;font-size:17px}
+
+/* case studies */
+.case{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:20px 56px;padding-block:40px;border-top:1px solid var(--line)}
+.case:last-child{border-bottom:1px solid var(--line)}
+.case .tag{color:var(--faint);font-size:13px;margin-top:8px;line-height:1.5}
+.case h3{font-size:clamp(22px,2.6vw,28px);line-height:1.15}
+.case dl{margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.case dt{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.case dd{margin:0;color:var(--muted);font-size:15px;line-height:1.6}
+
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:28px;min-width:0;display:flex;flex-direction:column;gap:10px;transition:border-color .25s}
+.tile:hover{border-color:color-mix(in srgb,var(--ink) 25%,var(--line))}
+.tile.big{grid-column:span 2;grid-row:span 2}
+.tile h3{font-size:20px;line-height:1.25}
+.tile p{color:var(--muted);font-size:15px}
+.tile .k{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+.log{margin:auto 0 0;padding:16px 0 0;list-style:none;font-family:var(--mono);font-size:12px;display:grid;gap:6px}
+.log li{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:baseline;padding:10px 12px;border-radius:10px;background:var(--bg);line-height:1.5}
+.log b{color:var(--del);font-weight:500;font-size:10.5px;letter-spacing:.1em;padding:2px 7px;border-radius:999px;background:var(--del-bg)}
+
+/* how */
+.how{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px;counter-reset:s}
+.step{counter-increment:s;display:grid;gap:10px;align-content:start}
+.step::before{content:counter(s,decimal-leading-zero);font-family:var(--serif);font-style:italic;font-size:44px;line-height:1;color:var(--accent)}
+.step h3{font-size:18px}
+.step p{color:var(--muted);font-size:15px}
+
+/* toolkit */
+.kit{display:grid;gap:0;margin:0}
+.kit div{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:12px 56px;padding-block:22px;border-top:1px solid var(--line);align-items:baseline}
+.kit div:last-child{border-bottom:1px solid var(--line)}
+.kit dt{font-size:15px;font-weight:500}
+.kit dd{margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:13px;padding:5px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);background:var(--surface)}
+.chip.hi{border-color:var(--accent-soft);background:var(--accent-soft);color:var(--accent)}
+
+/* background */
+.bg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px}
+.tl{margin:0;padding:0;list-style:none;display:grid}
+.tl li{display:grid;grid-template-columns:minmax(0,150px) minmax(0,1fr);gap:4px 24px;padding-block:20px;border-top:1px solid var(--line)}
+.tl li:last-child{border-bottom:1px solid var(--line)}
+.when{font-family:var(--mono);font-size:12px;color:var(--faint);padding-top:3px}
+.tl b{font-weight:500;display:block}
+.tl span.d{color:var(--muted);font-size:15px;display:block;margin-top:4px}
+.sub{font-size:13px;font-family:var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--faint);font-weight:400;margin:0 0 14px}
+.plain{margin:0 0 36px;padding:0;list-style:none;display:grid;gap:10px;color:var(--muted);font-size:15px}
+.plain b{color:var(--ink);font-weight:500}
+
+/* contact */
+.contact{margin-top:clamp(80px,11vw,136px);padding-bottom:40px}
+.card{background:var(--ink);color:var(--bg);border-radius:28px;padding:clamp(32px,6vw,72px);display:grid;gap:24px}
+.card h2{font-size:clamp(36px,6.4vw,80px);line-height:1;letter-spacing:-.045em;max-width:12ch}
+.card h2 em.s{color:var(--accent)}
+.card p{max-width:34em;color:color-mix(in srgb,var(--bg) 70%,var(--ink));font-weight:300;font-size:17px}
+.mail{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:8px}
+.mail code{font-family:var(--mono);font-size:clamp(14px,2.2vw,18px);user-select:all;overflow-wrap:anywhere}
+.card .btn{background:transparent;color:var(--bg);border-color:color-mix(in srgb,var(--bg) 30%,var(--ink))}
+.card .btn:hover{border-color:var(--bg)}
+.btn.icon{width:44px;height:44px;padding:0;justify-content:center;flex-shrink:0}
+.btn.icon .i-check{display:none}
+.btn.icon.done .i-copy{display:none}
+.btn.icon.done .i-check{display:block}
+.card .btn.light{background:var(--bg);color:var(--ink);border-color:var(--bg)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;color:var(--faint);font-size:13px;padding-top:28px}
+
+@media (max-width:900px){
+  .hero-grid,.sec-head,.case,.kit div,.bg{grid-template-columns:minmax(0,1fr)}
+  .hero-grid{gap:40px}
+  .case dl{grid-template-columns:minmax(0,1fr);gap:18px}
+  .bento{grid-template-columns:minmax(0,1fr)}
+  .tile.big{grid-column:auto;grid-row:auto}
+  .how{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
+  .links{display:none}
+}
+@media (max-width:560px){
+  .facts{grid-template-columns:minmax(0,1fr);gap:28px}
+  .how{grid-template-columns:minmax(0,1fr)}
+  .tl li{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Gloria Stephen</a>
+    <nav class="links" aria-label="Sections">
+      <a href="#work">Work</a><a href="#built">Built</a><a href="#how">Process</a><a href="#toolkit">Toolkit</a><a href="#contact">Contact</a>
+    </nav>
+    <a class="btn dark" href="#contact" style="padding:8px 14px;font-size:13px">Get in touch</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <span class="status"><span class="dot" aria-hidden="true"></span>Open to new roles &middot; Miami, open to relocating</span>
+    <h1>I find the edge case <em class="s">before</em> your customer does.</h1>
+    <div class="hero-grid">
+      <div>
+        <p class="lede">Senior Product Analyst. I sit between engineers and customers: I read how a system really behaves, write the spec an engineer can build from, and test it until I trust it. <b>Over four years in product and business analysis</b>, the last 2.5 on an AI contract management platform at Cognitus, an IBM company.</p>
+        <div class="cta">
+          <a class="btn dark" href="#work">See the work <span class="arrow" aria-hidden="true">&rarr;</span></a>
+          <a class="btn" href="https://www.linkedin.com/in/gloria-stephen-0258701ba/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="diff" aria-label="Sample of field-level change tracking between two contract modifications">
+        <div class="diff-head">
+          <span>CLIN 0001</span>
+          <div class="tabs" role="tablist" aria-label="Contract version">
+            <button role="tab" id="t-a" aria-selected="false" data-v="a">P00001</button>
+            <button role="tab" id="t-b" aria-selected="false" data-v="b">P00002</button>
+            <button role="tab" id="t-d" aria-selected="true" data-v="d">Changes</button>
+          </div>
+        </div>
+        <div class="diff-body" id="diff-body"></div>
+        <div class="diff-foot">Illustrative sample. The feature I specified: every field that changed between contract modifications, line by line.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="facts">
+      <div class="fact"><strong>4<em class="s">+</em></strong><span>years across product and business analysis</span></div>
+      <div class="fact"><strong>2.5</strong><span>years on an AI contract lifecycle platform</span></div>
+      <div class="fact"><strong>2</strong><span>annual product roadmaps co-authored, FY26 and FY27</span></div>
+    </div>
+  </div>
+
+  <section class="wrap" id="work">
+    <div class="sec-head">
+      <p class="eyebrow">Selected work</p>
+      <div>
+        <h2>Messy rules in, <em class="s">shipped product</em> out.</h2>
+        <p>From LambdaX CLM, an AI contract lifecycle management platform for government and defense contractors.</p>
+      </div>
+    </div>
+    <div class="cases">
+      <article class="case">
+        <div><h3>Modification change tracking</h3><p class="tag">Specs, edge cases, testing</p></div>
+        <dl>
+          <div><dt>Problem</dt><dd>Government contracts are modified many times after award. Customers compared versions by hand to see what changed.</dd></div>
+          <div><dt>What I did</dt><dd>Wrote the requirements and acceptance criteria for tracking changes across the whole modification chain, down to each field on each line item, including lines added, removed, renumbered or changed twice.</dd></div>
+          <div><dt>Outcome</dt><dd>Shipped across successive 2026 releases, tested against real contracts before each one.</dd></div>
+        </dl>
+      </article>
+      <article class="case">
+        <div><h3>AI extraction, prototype to customer-ready</h3><p class="tag">Discovery through rollout</p></div>
+        <dl>
+          <div><dt>Problem</dt><dd>The extraction engine worked as a developer prototype, but nobody had defined what correct output looked like for a customer.</dd></div>
+          <div><dt>What I did</dt><dd>Defined the structured output for every award form, line item and clause section, validated it on real awards and wrote the documentation customers evaluate it with.</dd></div>
+          <div><dt>Outcome</dt><dd>Went from an internal demo to something customers test with their own documents.</dd></div>
+        </dl>
+      </article>
+      <article class="case">
+        <div><h3>SAP and Salesforce integrations</h3><p class="tag">ERP and CRM, APIs, acceptance testing</p></div>
+        <dl>
+          <div><dt>Problem</dt><dd>Contract data had to move cleanly between the product and the systems customers already run their business on.</dd></div>
+          <div><dt>What I did</dt><dd>Led the integration requirements with engineering and customer IT: field mapping, data flows to the ERP or CRM, and acceptance testing against customer data.</dd></div>
+          <div><dt>Outcome</dt><dd>A defined, tested path for contract data in and out of the customer's ERP and CRM.</dd></div>
+        </dl>
+      </article>
+      <article class="case">
+        <div><h3>From escalations to a reference account</h3><p class="tag">Customer feedback into fixes</p></div>
+        <dl>
+          <div><dt>Problem</dt><dd>Viasat, a satellite communications customer, was raising friction points faster than they were being closed.</dd></div>
+          <div><dt>What I did</dt><dd>Logged every issue with screenshots and video, drove fixes into the next release and handed the rest to engineering as tickets they could reproduce first try.</dd></div>
+          <div><dt>Outcome</dt><dd>The account moved from escalations to a reference.</dd></div>
+        </dl>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap" id="built">
+    <div class="sec-head">
+      <p class="eyebrow">Built myself</p>
+      <div>
+        <h2>If a check is slow by hand, <em class="s">I script it.</em></h2>
+        <p>I build with AI tools every day, IBM Bob and Claude Code among them.</p>
+      </div>
+    </div>
+    <div class="bento">
+      <div class="tile big">
+        <span class="k">QA harness</span>
+        <h3>Filter permutation testing</h3>
+        <p>Runs every filter combination on a list page through real clicks, captures the request each one sends, re-fetches it and reports where the screen and the API disagree.</p>
+        <ul class="log" aria-label="Defects the harness caught">
+          <li><b>FAIL</b><span>Removing one of two chips on the same field cleared every filter.</span></li>
+          <li><b>FAIL</b><span>Grid view silently dropped the active filter; list view kept it.</span></li>
+          <li><b>FAIL</b><span>% and _ in a Contains filter matched every row.</span></li>
+          <li><b>FAIL</b><span>A date range displayed one day early while the request sent the right range.</span></li>
+        </ul>
+      </div>
+      <div class="tile">
+        <span class="k">Python</span>
+        <h3>Metrics from source, not slides</h3>
+        <p>Tooling that generates engineering productivity metrics straight from source data for IBM's asset review.</p>
+      </div>
+      <div class="tile">
+        <span class="k">Python</span>
+        <h3>Resume as code</h3>
+        <p>One command rebuilds the PDF, so every version stays consistent and every claim has a history.</p>
+      </div>
+      <div class="tile">
+        <span class="k">Power BI</span>
+        <h3>Twenty years of shelter data</h3>
+        <p>MSc capstone: Portage APL donation and adoption data, with forecasts for campaign planning.</p>
+      </div>
+      <div class="tile">
+        <span class="k">Docs</span>
+        <h3>Release notes and roadmaps</h3>
+        <p>Co-authored the FY26 and FY27 roadmaps and every customer release note for the product.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" id="how">
+    <div class="sec-head">
+      <p class="eyebrow">Process</p>
+      <h2>The same four moves, <em class="s">every feature.</em></h2>
+    </div>
+    <div class="how">
+      <div class="step"><h3>Read the system</h3><p>The API, the data and the real customer documents come first. Opinions come after.</p></div>
+      <div class="step"><h3>Write the spec</h3><p>Requirements and acceptance criteria an engineer can build from without a meeting.</p></div>
+      <div class="step"><h3>Break it on purpose</h3><p>A test plan that hunts for edge cases, checked against the API, not only the screen.</p></div>
+      <div class="step"><h3>Ship and watch</h3><p>Release notes customers can follow, then feedback back into the next spec.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap" id="toolkit">
+    <div class="sec-head">
+      <p class="eyebrow">Toolkit</p>
+      <h2>What I work with.</h2>
+    </div>
+    <dl class="kit">
+      <div><dt>Product</dt><dd><span class="chip">Requirements</span><span class="chip">Acceptance criteria</span><span class="chip">Product specs</span><span class="chip">Test plans</span><span class="chip">Release planning</span><span class="chip">Roadmaps</span><span class="chip">Competitive analysis</span><span class="chip">Demos and RFPs</span></dd></div>
+      <div><dt>Integrations and APIs</dt><dd><span class="chip">REST APIs</span><span class="chip">Postman</span><span class="chip">Chrome DevTools</span><span class="chip">SAP</span><span class="chip">Salesforce</span><span class="chip">Field mapping</span></dd></div>
+      <div><dt>AI and automation</dt><dd><span class="chip hi">IBM Bob</span><span class="chip hi">Claude Code</span><span class="chip">Prompt design</span><span class="chip">LLM extraction evaluation</span><span class="chip">Agent orchestration</span><span class="chip">Power Automate</span><span class="chip">Zapier</span></dd></div>
+      <div><dt>Data</dt><dd><span class="chip">SQL</span><span class="chip">Python</span><span class="chip">Power BI</span><span class="chip">Tableau</span><span class="chip">Excel</span><span class="chip">Power Query</span></dd></div>
+      <div><dt>Tools</dt><dd><span class="chip">Jira</span><span class="chip">Notion</span><span class="chip">GitLab</span><span class="chip">Figma</span></dd></div>
+      <div><dt>Domain</dt><dd><span class="chip">Contract lifecycle management</span><span class="chip">FAR/DFARS</span><span class="chip">Enterprise SaaS</span><span class="chip">FedRAMP Moderate docs</span></dd></div>
+    </dl>
+  </section>
+
+  <section class="wrap" id="background">
+    <div class="sec-head">
+      <p class="eyebrow">Background</p>
+      <h2>Where I have been.</h2>
+    </div>
+    <div class="bg">
+      <ul class="tl">
+        <li><span class="when">2024 to now</span><div><b>Senior Product Analyst, Cognitus, an IBM company</b><span class="d">Requirements, integrations, testing, roadmaps and release notes for LambdaX CLM.</span></div></li>
+        <li><span class="when">2022 to 2023</span><div><b>Research Assistant, Kent State University</b><span class="d">Research paper applying convolutional neural networks to medical imaging, in Python.</span></div></li>
+        <li><span class="when">2020 to 2022</span><div><b>Business Analyst, Cognizant, Google account</b><span class="d">Business-verification data reviews for Google Maps; Power BI reporting on customer-service data.</span></div></li>
+      </ul>
+      <div>
+        <h3 class="sub">Education</h3>
+        <ul class="plain">
+          <li><b>MSc Business Analytics</b>, Kent State University</li>
+          <li><b>BSc Computer Science</b>, St. Francis College</li>
+        </ul>
+        <h3 class="sub">Certifications</h3>
+        <ul class="plain">
+          <li>IBM AI Product Manager Professional Certificate</li>
+          <li>IBM Generative and Agentic AI Foundation</li>
+          <li>Leadership Essentials for IBM Managers</li>
+          <li>Agile Project Management</li>
+          <li>Power BI and SQL</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap contact" id="contact">
+  <div class="card">
+    <p class="eyebrow">Contact</p>
+    <h2>Give me your <em class="s">messiest</em> system.</h2>
+    <p>I am looking for a hands-on product role close to engineers and customers. Based in Miami, Florida, and open to relocating.</p>
+    <div class="mail">
+      <code id="email">gloriastephen0528@gmail.com</code>
+      <button class="btn icon" id="copy" type="button" aria-label="Copy email" title="Copy email">
+        <svg class="i-copy" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4.5A1.5 1.5 0 0 1 3 13.5v-9A1.5 1.5 0 0 1 4.5 3h9A1.5 1.5 0 0 1 15 4.5V5"/></svg>
+        <svg class="i-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      </button>
+    </div>
+    <div class="cta" style="margin-top:0">
+      <a class="btn light" href="https://www.linkedin.com/in/gloria-stephen-0258701ba/" target="_blank" rel="noopener">LinkedIn <span class="arrow" aria-hidden="true">&rarr;</span></a>
+      <a class="btn" href="https://github.com/stephengloria" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+  <div class="foot"><span>Gloria Stephen</span><span>2026</span></div>
+</footer>
+
+<script>
+(function(){
+  var V={
+    a:[["","Funded amount","1,250,000.00"],["","Period end","2026-09-30"],["","Quantity","12 MO"],["","CLIN 0003","not present"]],
+    b:[["","Funded amount","1,475,000.00"],["","Period end","2027-03-31"],["","Quantity","12 MO"],["","CLIN 0003","Option Year 1"]],
+    d:[["-","Funded amount","1,250,000.00","del"],["+","Funded amount","1,475,000.00","add"],["-","Period end","2026-09-30","del"],["+","Period end","2027-03-31","add"],["","Quantity","12 MO"],["+","CLIN 0003","Option Year 1","add"]]
+  };
+  var body=document.getElementById("diff-body"),tabs=document.querySelectorAll(".tabs button");
+  function show(v){
+    body.textContent="";
+    V[v].forEach(function(r){
+      var d=document.createElement("div");d.className="row"+(r[3]?" "+r[3]:"");
+      [r[0],r[1],r[2]].forEach(function(t,i){var s=document.createElement("span");s.textContent=t;if(i===2)s.className="v";d.appendChild(s);});
+      body.appendChild(d);
+    });
+    tabs.forEach(function(t){t.setAttribute("aria-selected",t.dataset.v===v?"true":"false");});
+  }
+  tabs.forEach(function(t){t.addEventListener("click",function(){show(t.dataset.v);});});
+  show("d");
+  var btn=document.getElementById("copy"),em=document.getElementById("email");
+  btn.addEventListener("click",function(){
+    function sel(){var r=document.createRange();r.selectNodeContents(em);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.setAttribute("aria-label","Email selected, press Cmd+C");btn.title="Email selected, press Cmd+C";}
+    function done(){btn.classList.add("done");btn.setAttribute("aria-label","Copied");btn.title="Copied";
+      setTimeout(function(){btn.classList.remove("done");btn.setAttribute("aria-label","Copy email");btn.title="Copy email";},2000);}
+    try{navigator.clipboard.writeText(em.textContent).then(done,sel);}catch(e){sel();}
+  });
+})();
+</script>
