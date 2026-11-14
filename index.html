@@ -63,8 +63,13 @@ em.s{font-style:normal;font-weight:inherit;color:inherit}
 @keyframes rise{from{opacity:0;transform:translateY(16px)}}
 .diff{box-shadow:0 24px 64px -24px #0f62fe40}
 .hero .btn,.nav .btn{border-radius:999px;padding:0 24px}
+.hero .btn,.card .btn.light{min-height:52px;min-width:0;padding:0 28px;gap:16px;justify-content:center;transition:background .15s,transform .15s,box-shadow .15s}
+.hero .btn:hover{transform:translateY(-2px)}
+.hero .btn .arrow,.card .btn .arrow{transition:transform .15s}
+.hero .btn:hover .arrow{transform:translateX(3px)}
 .hero .cta{gap:12px}
-.hero .btn.dark{box-shadow:0 8px 28px -6px #0f62fe66}
+.hero .btn.dark,.nav .btn.dark{background:#0f62fe;border-color:#0f62fe;color:#fff;box-shadow:0 8px 28px -6px #0f62fe66}
+.hero .btn.dark:hover,.nav .btn.dark:hover{background:#0353e9;border-color:#0353e9}
 .status{display:inline-flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
 .dot{width:8px;height:8px;border-radius:50%;background:var(--add)}
 .hero h1{font-size:clamp(40px,5.2vw,72px);line-height:1.08;margin:0 0 32px;max-width:14ch;font-weight:300;letter-spacing:-.01em}
@@ -276,7 +281,7 @@ mark.todo{background:transparent;color:var(--del);outline:1px dashed var(--del);
         <p class="lede">Senior Product Analyst at Cognitus, an IBM company. I sit between customers, leadership and engineering: I lead client demos, align the roadmap, write specs engineers build from, and test until I trust it. <b>Over four years in product and business analysis</b> across enterprise SaaS, AI and data.</p>
         <div class="cta">
           <a class="btn dark" href="#work">See the work <span class="arrow" aria-hidden="true">&rarr;</span></a>
-          <a class="btn" href="https://www.linkedin.com/in/gloria-stephen-0258701ba/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://www.linkedin.com/in/gloria-stephen-0258701ba/" target="_blank" rel="noopener">LinkedIn <span class="arrow" aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
 
